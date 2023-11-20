@@ -125,7 +125,7 @@ function SideDrawer() {
   return (
     <>
       <Box
-        d="flex"
+        display="flex"
         justifyContent="space-between"
         alignItems="center"
         bg="white"
@@ -142,7 +142,7 @@ function SideDrawer() {
           </Button>
         </Tooltip>
         <Text fontSize="2xl" fontFamily="Work sans">
-        SecretHive
+          SecretHive
         </Text>
         <div>
           <Menu>

@@ -100,20 +100,20 @@ const Signup = () => {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "chat-app");
-      data.append("cloud_name", "piyushproj");
-      fetch("https://api.cloudinary.com/v1_1/piyushproj/image/upload", {
+      data.append("upload_preset", "secrethive");
+      data.append("cloud_name", "dqkgug6ay");
+      console.log("pic data: ", data);
+      fetch("https://api.cloudinary.com/v1_1/dqkgug6ay/image/upload", {
         method: "post",
         body: data,
       })
         .then((res) => res.json())
         .then((data) => {
           setPic(data.url.toString());
-          console.log(data.url.toString());
           setPicLoading(false);
         })
         .catch((err) => {
-          console.log(err);
+          console.log("error uploading pic: ", err);
           setPicLoading(false);
         });
     } else {
