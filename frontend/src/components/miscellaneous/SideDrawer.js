@@ -197,7 +197,7 @@ function SideDrawer() {
           <DrawerBody>
             <Box d="flex" pb={2}>
               <Input
-                placeholder="Search by name or email"
+                placeholder="Search by name or username"
                 mr={2}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}

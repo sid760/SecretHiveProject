@@ -7,12 +7,7 @@ const generateToken = require("../config/generateToken");
 //@access          Public
 const allUsers = asyncHandler(async (req, res) => {
   const keyword = req.query.search
-    ? {
-        $or: [
-          { name: { $regex: req.query.search, $options: "i" } },
-          { email: { $regex: req.query.search, $options: "i" } },
-        ],
-      }
+    ? { username: { $regex: req.query.search, $options: "i" } }
     : {};
 
   const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
@@ -23,14 +18,18 @@ const allUsers = asyncHandler(async (req, res) => {
 //@route           POST /api/user/
 //@access          Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, pic } = req.body;
+  const { name, username, password, pic } = req.body;
+  const ip_add = req.socket.remoteAddress;
 
-  if (!name || !email || !password) {
+  console.log("in registerUser()");
+
+  if (!name || !username || !password) {
+    console.log("fields: ", name, username, password);
     res.status(400);
-    throw new Error("Please Enter all the Feilds");
+    throw new Error("Please Enter all the Fields");
   }
 
-  const userExists = await User.findOne({ email });
+  const userExists = await User.findOne({ username });
 
   if (userExists) {
     res.status(400);
@@ -39,18 +38,20 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const user = await User.create({
     name,
-    email,
+    username,
     password,
     pic,
+    ip_add,
   });
 
   if (user) {
     res.status(201).json({
       _id: user._id,
       name: user.name,
-      email: user.email,
+      username: user.username,
       isAdmin: user.isAdmin,
       pic: user.pic,
+      ip_add: user.ip_add,
       token: generateToken(user._id),
     });
   } else {
@@ -63,22 +64,21 @@ const registerUser = asyncHandler(async (req, res) => {
 //@route           POST /api/users/login
 //@access          Public
 const authUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
-
-  const user = await User.findOne({ email });
-
+  const { username, password } = req.body;
+  const user = await User.findOne({ username });
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
       name: user.name,
-      email: user.email,
+      username: user.username,
       isAdmin: user.isAdmin,
       pic: user.pic,
+      ip_add: user.ip_add,
       token: generateToken(user._id),
     });
   } else {
     res.status(401);
-    throw new Error("Invalid Email or Password");
+    throw new Error("Invalid Username or Password");
   }
 });
 
