@@ -2,6 +2,12 @@ const asyncHandler = require("express-async-handler");
 const Message = require("../models/messageModel");
 const User = require("../models/userModel");
 const Chat = require("../models/chatModel");
+require("dotenv").config();
+const chatEncryptionKey = process.env.ENCRYPTION_KEY;
+const {
+  encryptMessage,
+  decryptMessage,
+} = require("../EncrptionUtils/Encryption");
 
 //@description     Get all Messages
 //@route           GET /api/Message/:chatId
@@ -11,7 +17,17 @@ const allMessages = asyncHandler(async (req, res) => {
     const messages = await Message.find({ chat: req.params.chatId })
       .populate("sender", "name pic username")
       .populate("chat");
-    res.json(messages);
+
+    //decrypt  message
+    const decryptedMessages = messages.map((message) => {
+      const decryptedContent = decryptMessage(
+        message.content,
+        chatEncryptionKey
+      );
+      console.log("Decrypted content:", decryptedContent);
+      return { ...message._doc, content: decryptedContent };
+    });
+    res.json(decryptedMessages);
   } catch (error) {
     res.status(400);
     throw new Error(error.message);
@@ -29,9 +45,10 @@ const sendMessage = asyncHandler(async (req, res) => {
     return res.sendStatus(400);
   }
 
+  const encryptedMessage = encryptMessage(content, chatEncryptionKey);
   var newMessage = {
     sender: req.user._id,
-    content: content,
+    content: encryptedMessage.content,
     chat: chatId,
   };
 
