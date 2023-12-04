@@ -62,7 +62,7 @@ const Login = () => {
       history.push("/chats");
     } catch (error) {
       toast({
-        title: "Error Occured! 213",
+        title: "Error Occured!",
         description: error.response.data.message,
         status: "error",
         duration: 5000,
