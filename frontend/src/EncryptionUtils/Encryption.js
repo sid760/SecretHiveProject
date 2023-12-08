@@ -4,9 +4,8 @@ const crypto = require("crypto");
 function encryptMessage(message, chatEncryptionKey) {
   const paddingLength = 16 - (message.length % 16);
   const padding = new Array(paddingLength + 1).join("e");
-  console.log("padding = ", padding);
+  // console.log("padding = ", padding);
   message += padding;
-  console.log(message);
   const cipher = crypto.createCipheriv(
     "aes-256-ecb",
     Buffer.from(chatEncryptionKey, "hex"),

@@ -19,6 +19,24 @@ const Login = () => {
   const history = useHistory();
   const { setUser } = ChatState();
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      if (!username || !password) {
+        toast({
+          title: "Please Fill all the Feilds",
+          status: "warning",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+        setLoading(false);
+        return;
+      } else {
+        submitHandler();
+      }
+    }
+  };
+
   const submitHandler = async () => {
     setLoading(true);
     if (!username || !password) {
@@ -92,6 +110,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             type={show ? "text" : "password"}
             placeholder="Enter password"
+            onKeyDown={handleKeyDown}
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
