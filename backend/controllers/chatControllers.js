@@ -1,6 +1,12 @@
 const asyncHandler = require("express-async-handler");
 const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
+require("dotenv").config();
+const chatEncryptionKey = process.env.ENCRYPTION_KEY;
+const {
+  encryptMessage,
+  decryptMessage,
+} = require("../EncrptionUtils/Encryption");
 
 //@description     Create or fetch One to One Chat
 //@route           POST /api/chat/
@@ -65,6 +71,13 @@ const fetchChats = asyncHandler(async (req, res) => {
         results = await User.populate(results, {
           path: "latestMessage.sender",
           select: "name pic username",
+        });
+        const decryptLatestMessage = results.map((result) => {
+          const decryptedContent = decryptMessage(
+            result.latestMessage.content,
+            chatEncryptionKey
+          );
+          result.latestMessage.content = decryptedContent;
         });
         res.status(200).send(results);
       });
