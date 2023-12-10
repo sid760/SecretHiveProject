@@ -180,14 +180,18 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             {decryptedMessages &&
               (!selectedChat.isGroupChat ? (
                 <>
-                  {getSender(user, selectedChat.users)}
+                  <div style={{ userSelect: "none" }}>
+                    {getSender(user, selectedChat.users)}
+                  </div>
                   <ProfileModal
                     user={getSenderFull(user, selectedChat.users)}
                   />
                 </>
               ) : (
                 <>
-                  <div style={{ display: "flex", gap: "20px" }}>
+                  <div
+                    style={{ display: "flex", gap: "20px", userSelect: "none" }}
+                  >
                     {selectedChat.chatName}
                     <Tooltip label="Group Chat">
                       <img

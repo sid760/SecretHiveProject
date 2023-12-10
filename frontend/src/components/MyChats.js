@@ -8,6 +8,7 @@ import ChatLoading from "./ChatLoading";
 import GroupChatModal from "./miscellaneous/GroupChatModal";
 import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
+import groupIcon from "../group.svg";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -101,9 +102,23 @@ const MyChats = ({ fetchAgain }) => {
                 key={chat._id}
               >
                 <Text>
-                  {!chat.isGroupChat
-                    ? getSender(loggedUser, chat.users)
-                    : chat.chatName}
+                  {!chat.isGroupChat ? (
+                    getSender(loggedUser, chat.users)
+                  ) : (
+                    <>
+                      <div style={{ display: "flex", gap: "10px" }}>
+                        {chat.chatName}
+                        <img
+                          src={groupIcon}
+                          alt="group"
+                          style={{
+                            scale: "0.8",
+                            alignItems: "center",
+                          }}
+                        />
+                      </div>
+                    </>
+                  )}
                 </Text>
                 {chat.latestMessage && (
                   <Text fontSize="xs">

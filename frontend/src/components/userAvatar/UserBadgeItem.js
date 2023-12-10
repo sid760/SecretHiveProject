@@ -1,5 +1,6 @@
 import { CloseIcon } from "@chakra-ui/icons";
 import { Badge } from "@chakra-ui/layout";
+import { Tooltip } from "@chakra-ui/react";
 
 const UserBadgeItem = ({ user, handleFunction, admin }) => {
   return (
@@ -15,9 +16,17 @@ const UserBadgeItem = ({ user, handleFunction, admin }) => {
       cursor="pointer"
       onClick={handleFunction}
     >
+      {/* {console.log("admin =======> ", admin)}
+      {console.log("user._id =======> ", user._id)} */}
       {user.name}
-      {admin === user._id && <span> (Admin)</span>}
-      <CloseIcon pl={1} />
+      {admin._id === user._id && (
+        <span style={{ color: "lightgrey" }}>
+          <sub> Admin</sub>
+        </span>
+      )}
+      <Tooltip label="Remove user">
+        <CloseIcon pl={1} />
+      </Tooltip>
     </Badge>
   );
 };

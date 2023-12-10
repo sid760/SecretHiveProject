@@ -54,9 +54,11 @@ const ProfileModal = ({ user, children }) => {
               alt={user.name}
             />
             <Text
-              fontSize={{ base: "28px", md: "30px" }}
+              fontSize={{ base: "24px", md: "28px" }}
               fontFamily="Work sans"
-            ></Text>
+            >
+              @{user.username}
+            </Text>
           </ModalBody>
           <ModalFooter>
             <Button onClick={onClose}>Close</Button>
