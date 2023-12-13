@@ -9,6 +9,7 @@ import GroupChatModal from "./miscellaneous/GroupChatModal";
 import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
 import groupIcon from "../group.svg";
+import "../App.css";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -100,6 +101,7 @@ const MyChats = ({ fetchAgain }) => {
                 py={2}
                 borderRadius="lg"
                 key={chat._id}
+                className="hoverable-element"
               >
                 <Text>
                   {!chat.isGroupChat ? (

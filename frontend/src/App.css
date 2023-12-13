@@ -20,3 +20,12 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.hoverable-element {
+  background-color: #e0e0e0; /* Set your default background color */
+  transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+
+.hoverable-element:hover {
+  background-color: #a0a0a0; /* Set the background color on hover */
+}
