@@ -14,6 +14,7 @@ import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
 import Lottie from "react-lottie";
 import animationData from "../Animation - 1702404269691.json"; // Import your Lottie animation JSON file
+import logoAnimationData from "../Animation - 1702565803694.json";
 
 function Homepage() {
   const history = useHistory();
@@ -29,6 +30,16 @@ function Homepage() {
     loop: true,
     autoplay: true,
     animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+ // Lottie options for your logo
+
+  const logoLottieOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: logoAnimationData,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
@@ -51,6 +62,9 @@ function Homepage() {
           borderRadius="lg"
           borderWidth="1px"
         >
+        <Box mb={1}>
+            <Lottie options={logoLottieOptions} height={51} width={50} />
+          </Box>
           <Text fontSize="4xl" fontFamily="Work sans" fontWeight="bold">
             SecretHive
           </Text>
