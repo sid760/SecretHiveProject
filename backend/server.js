@@ -7,6 +7,9 @@ const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const path = require("path");
 
+// Use __dirname to construct the absolute path
+const scheduledTasksPath = path.join(__dirname, 'scheduledTasks.js');
+require(scheduledTasksPath);
 dotenv.config();
 connectDB();
 const app = express();
