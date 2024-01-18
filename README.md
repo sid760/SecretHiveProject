@@ -1,3 +1,5 @@
+<p name="readme-top"></p>
+
 # SecretHive - A Privacy Based Chat Application
 
 
@@ -26,6 +28,8 @@ Built With
 <img alt="Chakra-UI" src="https://img.shields.io/badge/Chakra%20UI-white.svg?&style=for-the-badge&logo=chakraui&logoColor=%42c7c0"/>
 <img alt="Socket.io" src="https://img.shields.io/badge/socket.io-gray.svg?&style=for-the-badge&logo=socket.io&logoColor=%42c7c0"/>
 </p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Screenshots
 
@@ -84,3 +88,5 @@ Built With
 #### Responsive UI
 ![image](https://github.com/sid760/SecretHiveProject/assets/43800138/4f9c27ed-e800-40ec-8030-e6e2e561922f) &ensp;&ensp;&ensp;
 ![image](https://github.com/sid760/SecretHiveProject/assets/43800138/691456e5-9fee-4995-9bfd-9592c5b67372)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
