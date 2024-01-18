@@ -29,7 +29,7 @@ Built With
 <img alt="Socket.io" src="https://img.shields.io/badge/socket.io-gray.svg?&style=for-the-badge&logo=socket.io&logoColor=%42c7c0"/>
 </p>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right" style="position: fixed;">(<a href="#readme-top">Back to top</a>)</p>
 
 ## Screenshots
 
@@ -68,6 +68,8 @@ Built With
 #### Chats
 ![image](https://github.com/sid760/SecretHiveProject/assets/43800138/dc162582-1787-419d-80cc-472b71731b40)
 <br>
+
+<p align="right" style="position: fixed;">(<a href="#readme-top">Back to top</a>)</p>
 
 #### Can create group
 ![image](https://github.com/sid760/SecretHiveProject/assets/43800138/217fee7d-e2f6-43d2-a1b0-1f4e237fcb5b)
